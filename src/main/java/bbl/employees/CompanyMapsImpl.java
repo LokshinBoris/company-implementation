@@ -18,17 +18,14 @@ public class CompanyMapsImpl implements Company
 	@Override
 	public void addEmployee(Employee empl)
 	{
-		if(employees.putIfAbsent(empl.getId(), empl)==null)
-		{
+		if(employees.putIfAbsent(empl.getId(), empl)!=null) throw new IllegalStateException();
+			
 			employeesDepartment.computeIfAbsent(empl.getDepartment(), k -> new LinkedList<Employee>()).add(empl);
 			if(  empl instanceof Manager )
 			{
 				Manager man=(Manager) empl;
 				factorManagers.computeIfAbsent(man.getFactor(), k -> new LinkedList<Manager>()).add(man);
-			}
-		}
-		else throw new IllegalStateException();
-
+			} 
 	}
 
 	@Override
@@ -44,11 +41,13 @@ public class CompanyMapsImpl implements Company
 		res=employees.remove(id);
 		if(res!=null)
 		{
-			employeesDepartment.remove(res.getDepartment());
+			List<Employee> listDep=employeesDepartment.get(res.getDepartment());
+			listDep.remove(res);
 			if(  res instanceof Manager )
 			{
 				Manager man=(Manager) res;
-				factorManagers.remove(man.factor);
+				List<Manager> listMan=factorManagers.get(man.factor);
+				listMan.remove(man);
 			}		
 		}
 		else throw new NoSuchElementException();
