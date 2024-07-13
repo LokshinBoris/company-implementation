@@ -7,8 +7,11 @@ class CompanyMapsImplTest extends CompanyTest {
 	@Override
 	@BeforeEach
 	void setCompany() {
-		company = new CompanyMapsImpl();
+		company = getEmptyCompany();
 		super.setCompany();
 	}
-
+	protected Company getEmptyCompany()
+	{
+		return new CompanyMapsImpl();
+	}
 }

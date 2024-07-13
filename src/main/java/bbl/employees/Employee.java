@@ -2,12 +2,20 @@ package bbl.employees;
 
 import java.util.Objects;
 
-public class Employee implements Comparable<Employee>
+import org.json.JSONObject;
+
+import bbl.io.JSONable;
+
+public class Employee implements Comparable<Employee>, JSONable<Employee>
 {
 	private long id;
 	private int basicSalary;
 	private String department;
 	
+	public Employee()
+	{
+		
+	}
 	public Employee(long id, int basicSalary, String department)
 	{
 		this.id = id;
@@ -52,8 +60,50 @@ public class Employee implements Comparable<Employee>
 	
 	public int computeSalary() 
 	{
-		// TODO Auto-generated method stub
 		return basicSalary;
+	}
+	@Override
+	public String getJSON()
+	{
+		JSONObject jsonObject= new JSONObject();
+		fillJSONObjct(jsonObject);
+		return jsonObject.toString();
+	}
+	
+	protected void fillJSONObjct(JSONObject jsonObject) 
+	{
+		if(!jsonObject.has("className"))
+		{
+			jsonObject.put("className", getClass().getName());
+		}
+		jsonObject.put("id",id);
+		jsonObject.put("department",department);
+		jsonObject.put("basicSalary",basicSalary);
+	}
+	
+	@Override
+	public Employee setObject(String json) 
+	{
+		JSONObject jsonObject = new JSONObject(json);
+		String className=jsonObject.getString("className");
+		
+		try
+		{
+			Employee empl = (Employee) Class.forName(className).getConstructor().newInstance();
+			empl.fillEmployee(jsonObject);
+			return empl;
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+	
+	protected void fillEmployee(JSONObject jsonObject)
+	{
+		id=jsonObject.getLong("id");
+		department=jsonObject.getString("department");
+		basicSalary=jsonObject.getInt("basicSalary");	
 	}
 	
 }

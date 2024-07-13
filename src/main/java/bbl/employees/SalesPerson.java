@@ -1,9 +1,15 @@
 package bbl.employees;
 
+import org.json.JSONObject;
+
 public class SalesPerson extends WageEmployee 
 {
 	private float percent;
 	private long sales;
+	public SalesPerson()
+	{
+		
+	}
 	public SalesPerson(long id, int basicSalary, String department, int hours, int wage, float percent, long sales)
 	{
 		super(id, basicSalary, department, hours, wage);
@@ -33,6 +39,23 @@ public class SalesPerson extends WageEmployee
 		return Math.round( super.computeSalary()+ (int)(sales*percent/100) );
 	}
 
-
+	@Override
+	protected void fillJSONObjct(JSONObject jsonObject) 
+	{
+		if(!jsonObject.has("className"))
+		{
+			jsonObject.put("className", getClass().getName());
+		}
+		super.fillJSONObjct(jsonObject);
+		jsonObject.put("percent",percent);
+		jsonObject.put("sales",sales);
+	}
+	@Override
+	protected void fillEmployee(JSONObject jsonObject)
+	{
+		super.fillEmployee(jsonObject);
+		percent=jsonObject.getFloat("percent");
+		sales=jsonObject.getLong("sales");
+	}
 	
 }

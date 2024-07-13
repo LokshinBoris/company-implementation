@@ -9,7 +9,9 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CompanyTest {
+import bbl.io.Persistable;
+
+abstract class CompanyTest {
 	private static final long ID1 = 123;
 	private static final int SALARY1 = 1000;
 	private static final String DEPARTMENT1 = "QA";
@@ -30,6 +32,7 @@ class CompanyTest {
 	private static final float FACTOR3 = 3;
 	private static final long ID6 = 400;
 	private static final long ID7 = 500;
+	private static final String EMPLOYEES_TEST_FILE = "emploeessavefile.data";
 	Employee empl1 = new WageEmployee(ID1, SALARY1, DEPARTMENT1, WAGE1, HOURS1);
 	Employee empl2 = new Manager(ID2, SALARY2, DEPARTMENT1, FACTOR1);
 	Employee empl3 = new SalesPerson(ID3, SALARY3, DEPARTMENT2, WAGE1, HOURS1, PERCENT1, SALES1);
@@ -106,5 +109,23 @@ class CompanyTest {
 			assertArrayEquals(managersExpected, company.getManagersWithMostFactor());
 		}
 
+		@Test
+		void writeJsonTest()
+		{
+			((Persistable) company).save(EMPLOYEES_TEST_FILE);
+		}
 
+		
+		@Test
+		void persistableTest()
+		{
+			if(company instanceof Persistable)
+			{
+				((Persistable) company).save(EMPLOYEES_TEST_FILE);
+				Company companyTest=getEmptyCompany();
+				((Persistable) companyTest).restore(EMPLOYEES_TEST_FILE);
+				assertIterableEquals(company,companyTest);
+			}
+		}
+		protected abstract Company getEmptyCompany();
 }
