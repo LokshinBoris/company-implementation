@@ -149,7 +149,8 @@ public class CompanyMapsImpl implements Company,  Persistable
 		{
 			input.lines().forEach(      (s)->
 										{
-											Employee empl=new Employee().setObject(s);
+											Employee empl=new Employee();
+											empl=(Employee)empl.setObject(s);
 											addEmployee(empl);
 										}
 								 );

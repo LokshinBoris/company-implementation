@@ -81,7 +81,7 @@ public class Employee implements Comparable<Employee>, JSONable
 	}
 	
 	@Override
-	public Employee setObject(String json) 
+	public JSONable setObject(String json) 
 	{
 		JSONObject jsonObject = new JSONObject(json);
 		String className=jsonObject.getString("className");
