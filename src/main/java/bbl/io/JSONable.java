@@ -1,6 +1,6 @@
 package bbl.io;
 
-public interface JSONable
+public interface JSONable 
 {
 	String getJSON();
 	JSONable setObject(String json);

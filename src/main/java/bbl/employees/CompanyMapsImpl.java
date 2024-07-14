@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import bbl.io.Persistable;
 //So far we do consider optimization
-public class CompanyMapsImpl implements Company, Persistable
+public class CompanyMapsImpl implements Company,  Persistable
 {
 	TreeMap<Long, Employee> employees = new TreeMap<>();
 	HashMap<String, List<Employee>> employeesDepartment = new HashMap<>();
