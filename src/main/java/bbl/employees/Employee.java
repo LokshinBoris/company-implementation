@@ -6,15 +6,14 @@ import org.json.JSONObject;
 
 import bbl.io.JSONable;
 
-public class Employee implements Comparable<Employee>, JSONable<Employee>
+public class Employee implements Comparable<Employee>, JSONable
 {
 	private long id;
 	private int basicSalary;
 	private String department;
 	
 	public Employee()
-	{
-		
+	{		
 	}
 	public Employee(long id, int basicSalary, String department)
 	{
@@ -86,12 +85,11 @@ public class Employee implements Comparable<Employee>, JSONable<Employee>
 	{
 		JSONObject jsonObject = new JSONObject(json);
 		String className=jsonObject.getString("className");
-		
 		try
 		{
 			Employee empl = (Employee) Class.forName(className).getConstructor().newInstance();
-			empl.fillEmployee(jsonObject);
-			return empl;
+			empl.fillEmployee(jsonObject);		
+			return empl; 
 		}
 		catch (Exception e)
 		{
