@@ -1,4 +1,4 @@
-package bbl.employees;
+package telran.employees;
 
 //SO far we don't consider optimization
 public interface Company extends Iterable<Employee>

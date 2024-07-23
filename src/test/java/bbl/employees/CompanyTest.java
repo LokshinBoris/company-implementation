@@ -9,7 +9,12 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bbl.io.Persistable;
+import telran.employees.Company;
+import telran.employees.Employee;
+import telran.employees.Manager;
+import telran.employees.SalesPerson;
+import telran.employees.WageEmployee;
+import telran.io.Persistable;
 
 abstract class CompanyTest {
 	private static final long ID1 = 123;

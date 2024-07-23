@@ -1,4 +1,4 @@
-package bbl.employees;
+package telran.employees;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.Map.Entry;
 
-import bbl.io.Persistable;
+import telran.io.Persistable;
 //So far we do consider optimization
 public class CompanyMapsImpl implements Company,  Persistable
 {

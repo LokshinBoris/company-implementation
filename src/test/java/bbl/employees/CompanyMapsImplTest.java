@@ -2,6 +2,9 @@ package bbl.employees;
 
 import org.junit.jupiter.api.BeforeEach;
 
+import telran.employees.Company;
+import telran.employees.CompanyMapsImpl;
+
 class CompanyMapsImplTest extends CompanyTest {
 
 	@Override

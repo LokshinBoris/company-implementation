@@ -1,10 +1,10 @@
-package bbl.employees;
+package telran.employees;
 
 import java.util.Objects;
 
 import org.json.JSONObject;
 
-import bbl.io.JSONable;
+import telran.io.JSONable;
 
 public class Employee implements Comparable<Employee>, JSONable
 {

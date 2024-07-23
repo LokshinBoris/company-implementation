@@ -1,4 +1,4 @@
-package bbl.io;
+package telran.io;
 
 public interface JSONable 
 {
