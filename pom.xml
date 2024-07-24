@@ -21,6 +21,11 @@
    	 	<artifactId>json</artifactId>
     	<version>20240303</version>
 	</dependency>
+	<dependency>
+	    <groupId>telran.view</groupId>
+  	 	<artifactId>cli-view</artifactId>
+  	 	<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
 </dependencies>
 
 

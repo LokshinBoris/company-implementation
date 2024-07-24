@@ -44,6 +44,11 @@ public class CompanyMapsImpl implements Company,  Persistable
 		return new CompanyIterator();
 	}
 	
+	public int getSize()
+	{
+		return employees.size();
+		
+	}
 	public Employee removeEmployee(long id) {
 		Employee empl = employees.remove(id);
 		if(empl == null) {

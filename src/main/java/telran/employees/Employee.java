@@ -1,10 +1,13 @@
 package telran.employees;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 import org.json.JSONObject;
 
 import telran.io.JSONable;
+import telran.view.InputOutput;
 
 public class Employee implements Comparable<Employee>, JSONable
 {
@@ -104,4 +107,5 @@ public class Employee implements Comparable<Employee>, JSONable
 		basicSalary=jsonObject.getInt("basicSalary");	
 	}
 	
+
 }
